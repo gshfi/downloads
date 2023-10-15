@@ -26,6 +26,65 @@ Write-Host "npcap is succesvol geïnstalleerd." -ForegroundColor Green
 Start-Process "msiexec.exe" -ArgumentList "/i Suricata-6.0.13-1-64bit.msi /qn" -NoNewWindow -Wait
 Write-Host "Suricata is succesvol geïnstalleerd." -ForegroundColor Green
 
+# Download de regels naar C:\Program Files\Suricata\rules\
+$baseURL = "https://rules.emergingthreats.net/open/suricata/rules/"
+$rulesDestination = "C:\Program Files\Suricata\rules\"
+$rulesList = @(
+    "botcc.rules",
+    "botcc.portgrouped.rules",
+    "ciarmy.rules",
+    "compromised.rules",
+    "drop.rules",
+    "dshield.rules",
+    "emerging-activex.rules",
+    "emerging-adware_pup.rules",
+    "emerging-attack_response.rules",
+    "emerging-chat.rules",
+    "emerging-coinminer.rules",
+    "emerging-current_events.rules",
+    "emerging-dns.rules",
+    "emerging-dos.rules",
+    "emerging-exploit.rules",
+    "emerging-ftp.rules",
+    "emerging-games.rules",
+    "emerging-icmp_info.rules",
+    "emerging-icmp.rules",
+    "emerging-imap.rules",
+    "emerging-inappropriate.rules",
+    "emerging-info.rules",
+    "emerging-ja3.rules",
+    "emerging-malware.rules",
+    "emerging-misc.rules",
+    "emerging-mobile_malware.rules",
+    "emerging-netbios.rules",
+    "emerging-phishing.rules",
+    "emerging-p2p.rules",
+    "emerging-policy.rules",
+    "emerging-pop3.rules",
+    "emerging-rpc.rules",
+    "emerging-scada.rules",
+    "emerging-scan.rules",
+    "emerging-shellcode.rules",
+    "emerging-smtp.rules",
+    "emerging-snmp.rules",
+    "emerging-sql.rules",
+    "emerging-telnet.rules",
+    "emerging-tftp.rules",
+    "emerging-user_agents.rules",
+    "emerging-voip.rules",
+    "emerging-web_client.rules",
+    "emerging-web_server.rules",
+    "emerging-web_specific_apps.rules",
+    "emerging-worm.rules",
+    "tor.rules"
+)
+foreach ($rule in $rulesList) {
+    $ruleURL = "${baseURL}${rule}"
+    $outFile = Join-Path -Path $rulesDestination -ChildPath $rule
+    Invoke-WebRequest -Uri $ruleURL -OutFile $outFile
+    Write-Host "Downloaded $rule to $outFile" -ForegroundColor Green
+}
+
 # Open de suricata.yaml file in Notepad voor handmatige bewerking
 Start-Process "notepad.exe" -ArgumentList "C:\Program Files\Suricata\suricata.yaml"
 Write-Host "Suricata configuratiebestand is geopend voor bewerking. Pas het bestand aan zoals nodig en sla het op." -ForegroundColor Yellow
