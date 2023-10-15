@@ -1,5 +1,4 @@
-# downloads
-Downloads Repository
+# Downloads Repository
 
 This repository contains essential binaries and scripts for setting up a specific environment. The binaries include tools such as Suricata, Sysmon, and Npcap, while the PowerShell script assists in downloading and installing these tools.
 Contents
