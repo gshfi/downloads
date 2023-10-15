@@ -16,19 +16,20 @@ Prerequisites
 2. PowerShell execution policy should be set to allow script execution (Set-ExecutionPolicy Unrestricted).
 
 Steps
-1. Clone the Repository:
+Clone the Repository:
 
     git clone https://github.com/gshfi/downloads.git
     cd downloads
 
-2. Run the PowerShell Script:
+Run the PowerShell Script:
 Before executing the script, you might want to review its contents to ensure you're familiar with what it does.
+
     powershell -ExecutionPolicy Bypass -File powershellscript.ps1
 
-3. Npcap Installation:
+Npcap Installation:
 The free version of Npcap doesn't support silent installation. The script will initiate the installation process, but you'll need to follow on-screen prompts to complete the installation.
 
-4. Post-Installation:
+Post-Installation:
 
 After the installations complete, the <b>suricata.yaml</b> configuration file will open in Notepad for manual adjustments. Please review and modify the configurations as per your requirements and save the file.
 
